@@ -15,11 +15,28 @@ Explanation: The answer is "wke", with the length of 3.
 Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 '''
 
-
+"""
+:type s: str
+:rtype: int
+"""
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
-        
+
+
+        #solution 2
+
+        n = len(s)
+        diction = {}
+        ans = 0
+
+        i = 0
+        j = 0
+
+        while(j < n):
+            if(diction.get(s[j]) != None):
+                i = max( diction.get(s[j]) , i)
+            ans = max(ans, j-i+1)
+            diction[s[j]] = j+1
+            j += 1
+
+        return(ans)

@@ -15,11 +15,37 @@ Explanation: 342 + 465 = 807.
 #         self.val = x
 #         self.next = None
 
+"""
+:type l1: ListNode
+:type l2: ListNode
+:rtype: ListNode
+"""
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
-        """
-        :type l1: ListNode
-        :type l2: ListNode
-        :rtype: ListNode
-        """
-        
+        carry = 0
+        newlist = head = ListNode(0)
+
+        while(l1 or l2 or carry): #while number/list still exists
+            v1 = 0
+            v2 = 0
+            if (l1 != None):
+                v1 = l1.val
+                l1 = l1.next
+
+            if (l2 != None):
+                v2 = l2.val
+                l2 = l2.next
+
+            curval = v1 + v2 + carry
+
+            if ( curval >= 10):
+                carry = 1
+                curval = curval - 10
+            else:
+                carry = 0
+
+            newlist.next = ListNode(curval)
+
+            newlist = newlist.next
+
+        return(head.next)
