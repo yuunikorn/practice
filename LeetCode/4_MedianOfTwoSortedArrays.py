@@ -12,11 +12,19 @@ nums2 = [3, 4]
 The median is (2 + 3)/2 = 2.5
 
 '''
+"""
+:type nums1: List[int]
+:type nums2: List[int]
+:rtype: float
+"""
 class Solution(object):
     def findMedianSortedArrays(self, nums1, nums2):
-        """
-        :type nums1: List[int]
-        :type nums2: List[int]
-        :rtype: float
-        """
-        
+
+        newlist = nums1 + nums2
+        newlist.sort()
+        length = len(newlist)
+
+        if (length%2 == 0):
+            return float(newlist[(length/2) - 1] + newlist[length/2]) / 2
+        else:
+            return newlist[(length-1)/2]
